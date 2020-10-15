@@ -163,15 +163,21 @@ function generateRumEventView(
     if (isAggregateField(field)) conditions.removeTag(field);
   });
 
+  const vitals: WebVital[] = Object.entries(WEB_VITAL_DETAILS)
+    .filter(([, value]) => value.display)
+    .map(([key]) => {
+      return key as WebVital;
+    });
+
   return EventView.fromNewQueryWithLocation(
     {
       id: undefined,
       version: 2,
       name: transactionName,
       fields: [
-        ...Object.values(WebVital).map(vital => `percentile(${vital}, ${PERCENTILE})`),
-        ...Object.values(WebVital).map(vital => `count_at_least(${vital}, 0)`),
-        ...Object.values(WebVital).map(
+        ...vitals.map(vital => `percentile(${vital}, ${PERCENTILE})`),
+        ...vitals.map(vital => `count_at_least(${vital}, 0)`),
+        ...vitals.map(
           vital =>
             `count_at_least(${vital}, ${WEB_VITAL_DETAILS[vital].failureThreshold})`
         ),
