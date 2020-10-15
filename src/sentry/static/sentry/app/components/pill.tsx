@@ -144,6 +144,7 @@ const StyledPill = styled('li')<{type?: PILL_TYPE}>`
 
   ${PillValue} {
     ${getPillValueColor};
+  }
 `;
 
 export default Pill;
