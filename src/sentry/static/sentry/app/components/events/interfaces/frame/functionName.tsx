@@ -1,11 +1,9 @@
 import React from 'react';
-import styled from '@emotion/styled';
 
 import {t} from 'app/locale';
 import {Frame} from 'app/types';
 import {getMeta} from 'app/components/events/meta/metaProxy';
 import AnnotatedText from 'app/components/events/meta/annotatedText';
-import space from 'app/styles/space';
 
 type Props = {
   frame: Frame;
