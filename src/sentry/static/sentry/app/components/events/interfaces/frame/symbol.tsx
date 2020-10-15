@@ -53,7 +53,7 @@ const Symbol = ({frame, onFunctionNameToggle, showCompleteFunctionName}: Props) 
         />
       </FunctionNameToggleTooltip>
       <Data>
-        <FunctionName
+        <StyledFunctionName
           frame={frame}
           showCompleteFunctionName={showCompleteFunctionName}
           hasHiddenDetails={hasFunctionNameHiddenDetails}
@@ -98,6 +98,10 @@ const Wrapper = styled('div')`
     grid-column-start: auto;
     grid-column-end: auto;
   }
+`;
+
+const StyledFunctionName = styled(FunctionName)`
+  margin-right: ${space(0.75)};
 `;
 
 const Data = styled('div')`

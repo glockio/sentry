@@ -50,18 +50,14 @@ const FunctionName = ({
   const valueOutput = getValueOutput();
 
   return (
-    <StyledCode className={className}>
+    <code className={className}>
       {!valueOutput ? (
         t('<unknown>')
       ) : (
         <AnnotatedText value={valueOutput.value} meta={valueOutput.meta} />
       )}
-    </StyledCode>
+    </code>
   );
 };
 
 export default FunctionName;
-
-const StyledCode = styled('code')`
-  margin-right: ${space(0.75)};
-`;
