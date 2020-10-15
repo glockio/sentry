@@ -99,13 +99,15 @@ export const ZOOM_KEYS = Object.values(WebVital).reduce((zoomKeys: string[], vit
  * will be queried together on initial load for alignment. However, the zoom controls
  * are defined for each measurement independently.
  */
+const _VITAL_GROUPS = [[WebVital.FP, WebVital.FCP, WebVital.LCP], [WebVital.FID]];
+
 const _COLORS = [
-  ...theme.charts.getColorPalette(Object.values(WebVital).length - 1),
+  ...theme.charts.getColorPalette(
+    _VITAL_GROUPS.reduce((count, group) => count + group.length, 0) - 1
+  ),
 ].reverse();
-export const VITAL_GROUPS = [
-  [WebVital.FP, WebVital.FCP, WebVital.LCP],
-  [WebVital.FID],
-].map(group => ({
+
+export const VITAL_GROUPS = _VITAL_GROUPS.map(group => ({
   group,
   colors: _COLORS.splice(0, group.length),
 }));
